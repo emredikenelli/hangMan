@@ -3,14 +3,19 @@ class Word {
   //var wordStatus = Array.fill(word.length)(false)
   val wordStatus = new Array[Boolean](word.length)
   //wordStatus.foreach (status => println(status))
+  val category = "animal"
+
+  def revealCategory(): Unit = println(category)
+
+  def reveal(): Unit = println(word)
 
   def printWord(): Unit = {
     var i = 0
     while(i < word.length){
       if (wordStatus(i) == true)
-        print(word.charAt(i))
+        print(word.charAt(i) + " ")
       else
-        print("*")
+        print("* ")
       i = i + 1
     }
     println("")
@@ -31,5 +36,13 @@ class Word {
 
   def openLetter(index: Int): Unit ={
     wordStatus(index) = true
+  }
+
+  def allRevealed(): Boolean = {
+    for (revealed <- wordStatus){
+      if (!revealed)
+        return false
+    }
+    return true
   }
 }

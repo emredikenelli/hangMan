@@ -2,11 +2,7 @@ class Game (difficulty: String){
   val word = new Word
   var moveList: List[Move] = Nil
   var points = 100
-  val buyALetterCard = new Card("BUY_A_LETTER", 20, 1)
-  val discountCard = new Card("DISCOUNT", 5, 2)
-  val riskCard = new Card("RISK", 8, 2)
-  val consolationCard = new Card("CONSOLATION", 5, 1)
-  val categoryCard = new Card("CATEGORY", 5, 1)
+  reportStatus()
 
 
 
@@ -20,13 +16,13 @@ class Game (difficulty: String){
 
 
   def checkLetter(letter: Char): Boolean = {
-    if ('a' <= letter && letter <= 'z'){
+    if (!('a' <= letter && letter <= 'z')){
       println("o harf bizde yok")
       return false
     }
 
-    for (i <-  0  to moveList.length){
-      if (letter == moveList(i) ){
+    for (i <-  0  until moveList.length){
+      if (letter.equals(moveList(i).getLetter())){
         println("harfi kullanmisin kanka ya")
         return false
       }
@@ -34,30 +30,88 @@ class Game (difficulty: String){
     return true
   }
 
-
-
-
-  def requestMove(): Unit = {
-    if (checkLetter(letter)){
-      moveList = new Move(letter, card) :: moveList
+  def checkCard(card: Card): Boolean = {
+    if (card.getCount() < 1){
+      println("sende o karttan kalmamis")
+      return false
     }
+    if (card.getCost() > points){
+      println("o karta puanin yetmiyo")
+      return false
+    }
+    true
+  }
+
+  def reportStatus(): Unit = {
+    word.printWord()
+    println("points: " + points)
+    if(finished()){
+      if(word.allRevealed())
+        println("kazandin")
+      else{
+        print("bulamadin kelime buydu: ")
+        word.reveal()
+      }
+    }
+
+  }
+
+
+
+
+  def playMove(move: Move): Unit = {
+    if(!finished()){
+      moveList = move :: moveList
+      applyMove()
+      reportStatus()
+    }
+    else
+      println("oyun bitmis")
   }
 
   def guess(discount: Double): Unit = {
     if(word.exist(moveList.head.getLetter())){
-      moveList.head.setResult("success")
+      moveList.head.setResult(true)
+      println("aha buldun bi tane")
     }
     else{
-      val pointDecrease: Int = ( letterCosts(moveList.head.getLetter()) * (1 -discount)).toInt
+      val pointDecrease: Int = (letterCosts(moveList.head.getLetter()) * (1 - discount)).toInt
       points = points - pointDecrease
-      moveList.head.setResult("faliure")
+      moveList.head.setResult(false)
+      println("yok cikmadi")
     }
   }
 
 
-  def playRiskCard(letter: Char): Unit = {
-    riskCard.play()
-    points = points - riskCard.getCost()
+  def applyMove(): Unit = {
+    val currentCard = moveList.head.getCard()
+    currentCard.play()
+    points = points - currentCard.getCost()
+
+    if(currentCard.getRevealsCategory()){
+      word.revealCategory()
+    }
+    if (currentCard.getOpensLetter()){
+      word.openLetter(2)
+    }
+    if (currentCard.getMakesGuess()){
+      if (currentCard.getGuessDiscount() != 0){
+        guess(currentCard.getGuessDiscount())
+      }
+      else{
+        if(moveList.length > 1)
+          guess(moveList(1).calculateDiscountForNextMove())
+        else
+          guess(0)
+      }
+    }
+  }
+
+  def finished(): Boolean = {
+    if(word.allRevealed() || points < 0)
+      return true
+    else
+      return false
   }
 
 

@@ -1,9 +1,6 @@
 object Main extends App{
-  val aslan = new Word
-  aslan.printWord()
-  aslan.exist('e')
-  aslan.printWord()
-  aslan.openLetter(1)
-  aslan.printWord()
+  val aslan = new MoveMaker(new Game("normal"))
+  aslan.makeMove("RISK", 'a')
+  aslan.makeMove("NO_CARD", 'o')
 
 }
