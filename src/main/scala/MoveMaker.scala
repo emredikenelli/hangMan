@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException
+
 class MoveMaker (game: Game){
   val buyALetterCard = new Card("BUY_A_LETTER", 20, 1, false, true,
     false,0, 0, false)
@@ -16,35 +18,23 @@ class MoveMaker (game: Game){
     "BUY_A_LETTER" -> buyALetterCard, "DISCOUNT" -> discountCard, "RISK" -> riskCard,
     "CONSOLATION" -> consolationCard, "CATEGORY" -> categoryCard, "NO_CARD" -> noCard)
 
-  /*def makeMove(card: String, letter: Char): Unit = {
-    if(game.checkCard(cardNames(card))){
-      if (game.checkLetter(letter)){
-        val nextMove = new Move(letter, cardNames(card))
-        if (nextMove.isValid())
-          game.playMove(nextMove)
-      }
-    }
-  }*/
 
-  def makeMove(card: String = "NO_CARD", letter: Char = '*'): Unit = {
-    val nextMove = new Move(letter, cardNames(card))
-    if(nextMove.isValid()){
-      if (!nextMove.getLetter().equals('*')){
-        if (game.checkLetter(letter)){
-          if (game.checkCard(cardNames(card))){
-            game.playMove(nextMove)
-          }
-        }
-      }
-      else{
-        if (game.checkCard(cardNames(card))){
-          game.playMove(nextMove)
-        }
-      }
+
+  def makeMove(card: String = "NO_CARD", letter: Char = '*', index: Int = -1): Unit = {
+    try{
+      val nextMove = new Move(letter, cardNames(card), index)
+      if (nextMove.isValid())
+        if (game.checkLetter(letter))
+          if (game.checkCard(cardNames(card)))
+            if(game.checkIndex(index))
+              game.playMove(nextMove)
     }
+    catch{
+      case ex: NoSuchElementException => //do nothing for now
+    }
+
+
   }
-
-
 
 
 

@@ -15,15 +15,34 @@ class Game (difficulty: String){
   )
 
 
+  def checkIndex(index: Int): Boolean = {
+    if (index > 0){
+      if (index >= word.word.length){
+        println("out of bounds")
+        return false
+      }
+      else if (word.indexIsOpen(index)){
+        println("that place is already revealed")
+        return false
+      }
+    }
+    return true
+  }
+
+
   def checkLetter(letter: Char): Boolean = {
+    if (letter == '*'){
+      return true
+    }
+
     if (!('a' <= letter && letter <= 'z')){
-      println("o harf bizde yok")
+      println("unknown letter has entered")
       return false
     }
 
-    for (i <-  0  until moveList.length){
-      if (letter.equals(moveList(i).getLetter())){
-        println("harfi kullanmisin kanka ya")
+    for (move <- moveList){
+      if (letter.equals(move.usedLetter)){
+        println("letter is already used")
         return false
       }
     }
@@ -31,25 +50,27 @@ class Game (difficulty: String){
   }
 
   def checkCard(card: Card): Boolean = {
-    if (card.getCount() < 1){
-      println("sende o karttan kalmamis")
+    if (card.count < 1){
+      println("you can not use thet card anymore")
       return false
     }
-    if (card.getCost() > points){
-      println("o karta puanin yetmiyo")
+    if (card.cost > points){
+      println("not enough points for the card")
       return false
     }
     true
   }
+
+
 
   def reportStatus(): Unit = {
     word.printWord()
     println("points: " + points)
     if(finished()){
       if(word.allRevealed())
-        println("kazandin")
+        println("you won!!")
       else{
-        print("bulamadin kelime buydu: ")
+        print("you have lost secret word was: ")
         word.reveal()
       }
     }
@@ -69,34 +90,38 @@ class Game (difficulty: String){
       println("oyun bitmis")
   }
 
+
+
+
+
   def guess(discount: Double): Unit = {
-    if(word.exist(moveList.head.getLetter())){
+    if(word.exist(moveList.head.usedLetter)){
       moveList.head.setResult(true)
-      println("aha buldun bi tane")
+      println("you found one!!")
     }
     else{
-      val pointDecrease: Int = (letterCosts(moveList.head.getLetter()) * (1 - discount)).toInt
+      val pointDecrease: Int = (letterCosts(moveList.head.usedLetter) * (1 - discount)).toInt
       points = points - pointDecrease
       moveList.head.setResult(false)
-      println("yok cikmadi")
+      println("secret word does not include that letter")
     }
   }
 
 
   def applyMove(): Unit = {
-    val currentCard = moveList.head.getCard()
+    val currentCard = moveList.head.usedCard
     currentCard.play()
-    points = points - currentCard.getCost()
+    points = points - currentCard.cost
 
-    if(currentCard.getRevealsCategory()){
+    if(currentCard.revealsCategory){
       word.revealCategory()
     }
-    if (currentCard.getOpensLetter()){
-      word.openLetter(2)
+    if (currentCard.opensLetter){
+      word.openLetter(moveList.head.index)
     }
-    if (currentCard.getMakesGuess()){
-      if (currentCard.getGuessDiscount() != 0){
-        guess(currentCard.getGuessDiscount())
+    if (currentCard.makesGuess){
+      if (currentCard.guessDiscount != 0){
+        guess(currentCard.guessDiscount)
       }
       else{
         if(moveList.length > 1)

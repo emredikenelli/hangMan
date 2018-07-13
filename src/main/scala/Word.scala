@@ -45,4 +45,11 @@ class Word {
     }
     return true
   }
+
+  def indexIsOpen(index: Int): Boolean = {
+    if (wordStatus(index))
+      true
+    else
+      false
+  }
 }
