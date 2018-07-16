@@ -43,7 +43,7 @@ class Game (difficulty: String){
     }
 
     for (move <- moveList){
-      if (letter.equals(move.usedLetter)){
+      if (letter.equals(move.usedLetter.get)){
         println("letter is already used")
         return false
       }
@@ -55,13 +55,22 @@ class Game (difficulty: String){
 
 
   def checkCard(card: Card): Boolean = {
-    if (card.count < 1){
-      println("you can not use thet card anymore")
+    if (card.getCount() < 1){
+      println("you can not use that card anymore")
       return false
     }
     if (card.cost > points){
       println("not enough points for the card")
       return false
+    }
+
+    if (moveList.length > 0){
+      if (moveList.head.calculateDiscountForNextMove() != 0)
+        if (card.guessDiscount != 0 || !card.makesGuess){
+          println("you have a discount for this move use it wisely")
+          return false
+        }
+
     }
     true
   }
@@ -117,19 +126,20 @@ class Game (difficulty: String){
 
   def applyMove(): Unit = {
     if (moveList.head.usedCard.isDefined){
-      val currentCard = moveList.head.usedCard
-      currentCard.get.play()
-      points = points - currentCard.get.cost
+      val currentCard = moveList.head.usedCard.get
+      currentCard.play()
+      println("oynadi")
+      points = points - currentCard.cost
 
-      if(currentCard.get.revealsCategory){
+      if(currentCard.revealsCategory){
         word.revealCategory()
       }
-      if (currentCard.get.opensLetter){
+      if (currentCard.opensLetter){
         word.openLetter(moveList.head.index.get)
       }
-      if (currentCard.get.makesGuess){
-        if (currentCard.get.guessDiscount != 0){
-          guess(currentCard.get.guessDiscount)
+      if (currentCard.makesGuess){
+        if (currentCard.guessDiscount != 0){
+          guess(currentCard.guessDiscount)
         }
         else{
           if(moveList.length > 1)

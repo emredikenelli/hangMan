@@ -30,12 +30,11 @@ class MoveMaker (game: Game){
       }
       else{
         val nextMove = new Move(letter, None, index)
-        if (playible(None, letter, index))
+        if (playible(None, letter, index)){
+          println("girdi")
           game.playMove(nextMove)
+        }
       }
-
-
-
     }
     catch{
       case ex: NoSuchElementException => //do nothing for now

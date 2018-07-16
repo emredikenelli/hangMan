@@ -3,8 +3,8 @@ class Card (cType: String, cardCost: Int, var cardCount: Int, cardRevealsCategor
             cardNextGuessDiscount: Double, cardNextGuessCondition: Boolean){
 
   def play(): Unit = {cardCount = cardCount - 1}
+  def getCount() = cardCount
   val cardType = cType
-  val count = cardCount
   val cost = cardCost
   val revealsCategory = cardRevealsCategory
   val opensLetter = cardOpensLetter

@@ -33,7 +33,9 @@ class Move (letter: Option[Char] , card: Option[Card], i: Option[Int]){
 
 
   def calculateDiscountForNextMove(): Double = {
-    if (card.get.nextGuessCondition == succeeded)
+    if (!card.isDefined)
+      return 0
+    else if (card.get.nextGuessCondition == succeeded)
       return card.get.nextGuessDiscount
     else
       return 0
