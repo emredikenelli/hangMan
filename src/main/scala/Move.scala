@@ -16,9 +16,9 @@ class Move (letter: Option[Char] , card: Option[Card], i: Option[Int]){
     if(card.isDefined){
       if (card.get.makesGuess && !letter.isDefined)
         return false
-      else if(card.get.opensLetter && i.isDefined)
+      else if(card.get.opensLetter && !i.isDefined)
         return false
-      else if (!card.get.makesGuess && !letter.isDefined)
+      else if (!card.get.makesGuess && letter.isDefined)
         return false
       else true
     }

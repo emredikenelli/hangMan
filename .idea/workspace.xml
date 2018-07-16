@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c22e4898-b32d-40a1-aea8-82ad15ef01db" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Card.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Card.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Game.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Game.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Move.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Move.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/MoveMaker.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/MoveMaker.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Word.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Word.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/Card.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/Main$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/Main$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/Main$delayedInit$body.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/Move.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/Word.class" afterDir="false" />
@@ -44,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Word.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Word.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/Word.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="134">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -56,8 +50,8 @@
       <file leaf-file-name="Move.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/Move.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="40" column="14" lean-forward="true" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+            <state relative-caret-position="270">
+              <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -71,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/Game.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="62" column="47" lean-forward="true" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
+            <state relative-caret-position="2246">
+              <caret line="151" column="9" lean-forward="true" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -83,7 +77,7 @@
       <file leaf-file-name="MoveMaker.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/MoveMaker.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
+            <state relative-caret-position="271">
               <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
             </state>
           </provider>
@@ -107,11 +101,11 @@
         <option value="$PROJECT_DIR$/src/main/scala/Main" />
         <option value="$PROJECT_DIR$/src/main/scala/Bosodfs" />
         <option value="$PROJECT_DIR$/src/main/scala/Main.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/Move.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Card.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/MoveMaker.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Game.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Word.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Move.scala" />
       </list>
     </option>
   </component>
@@ -345,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531742014202</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="son">
+      <created>1531744922306</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1531744922306</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -530,6 +531,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/MoveMaker.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Word.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -539,8 +554,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/Move.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="40" column="14" lean-forward="true" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+        <state relative-caret-position="270">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -551,24 +566,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/MoveMaker.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/Game.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="62" column="47" lean-forward="true" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/Word.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        <state relative-caret-position="2246">
+          <caret line="151" column="9" lean-forward="true" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
         </state>
       </provider>
     </entry>
