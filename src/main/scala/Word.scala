@@ -5,6 +5,8 @@ class Word {
   //wordStatus.foreach (status => println(status))
   val category = "animal"
 
+
+
   def revealCategory(): Unit = println(category)
 
   def reveal(): Unit = println(word)

@@ -1,13 +1,6 @@
-class Move (letter: Char , card: Card, i: Int){
+class Move (letter: Option[Char] , card: Option[Card], i: Option[Int]){
 
-  def this(letter: Char) = this(letter, new Card("NO_CARD", 0, 30, false, false,
-    true, 0, 0, false), -1)
-
-  def this(card: Card) = this('*', card, -1)
-
-  def this(card: Card, index: Int) = this('*', card, index)
-
-  def this(letter: Char, card: Card) = this(letter, card, -1)
+  require(isValid())
 
   private var succeeded: Boolean = _
 
@@ -20,20 +13,28 @@ class Move (letter: Char , card: Card, i: Int){
   def setResult(res: Boolean) = succeeded = res
 
   def isValid(): Boolean = {
-    if (card.makesGuess && letter == '*')
+    if(card.isDefined){
+      if (card.get.makesGuess && !letter.isDefined)
+        return false
+      else if(card.get.opensLetter && i.isDefined)
+        return false
+      else if (!card.get.makesGuess && !letter.isDefined)
+        return false
+      else true
+    }
+    else if (i.isDefined)
       return false
-    else if(card.opensLetter && i < 0)
-      return false
-    else if (!card.makesGuess && letter != '*')
+    else if (!letter.isDefined)
       return false
     else
       return true
+
   }
 
 
   def calculateDiscountForNextMove(): Double = {
-    if (card.nextGuessCondition == succeeded)
-      return card.nextGuessDiscount
+    if (card.get.nextGuessCondition == succeeded)
+      return card.get.nextGuessDiscount
     else
       return 0
   }

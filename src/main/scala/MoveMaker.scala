@@ -20,17 +20,36 @@ class MoveMaker (game: Game){
 
 
 
-  def makeMove(card: String = "NO_CARD", letter: Char = '*', index: Int = -1): Unit = {
+  def makeMove(card: Option[String], letter: Option[Char], index: Option[Int]): Unit = {
     try{
-      val nextMove = new Move(letter, cardNames(card), index)
-      if (nextMove.isValid())
-        if (game.checkLetter(letter))
-          if (game.checkCard(cardNames(card)))
-            if(game.checkIndex(index))
-              game.playMove(nextMove)
+      if (card.isDefined){
+        val mappedCard = cardNames(card.get)
+        val nextMove = new Move(letter, Some(mappedCard), index)
+        if (playible(Some(mappedCard), letter, index))
+          game.playMove(nextMove)
+      }
+      else{
+        val nextMove = new Move(letter, None, index)
+        if (playible(None, letter, index))
+          game.playMove(nextMove)
+      }
+
+
+
     }
     catch{
       case ex: NoSuchElementException => //do nothing for now
+      case ex: IllegalArgumentException => println("cant make that move")
+    }
+
+
+
+    def playible(card: Option[Card], letter: Option[Char], index: Option[Int]): Boolean = {
+      val letterCheck = if (letter.isDefined) {game.checkLetter(letter.get)} else true
+      val cardCheck = if (card.isDefined) game.checkCard(card.get) else true
+      val indexCheck = if (index.isDefined) game.checkIndex(index.get) else true
+
+      letterCheck && cardCheck && indexCheck
     }
 
 

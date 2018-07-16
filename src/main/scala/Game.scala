@@ -30,6 +30,8 @@ class Game (difficulty: String){
   }
 
 
+
+
   def checkLetter(letter: Char): Boolean = {
     if (letter == '*'){
       return true
@@ -48,6 +50,9 @@ class Game (difficulty: String){
     }
     return true
   }
+
+
+
 
   def checkCard(card: Card): Boolean = {
     if (card.count < 1){
@@ -95,40 +100,50 @@ class Game (difficulty: String){
 
 
   def guess(discount: Double): Unit = {
-    if(word.exist(moveList.head.usedLetter)){
-      moveList.head.setResult(true)
-      println("you found one!!")
-    }
-    else{
-      val pointDecrease: Int = (letterCosts(moveList.head.usedLetter) * (1 - discount)).toInt
-      points = points - pointDecrease
-      moveList.head.setResult(false)
-      println("secret word does not include that letter")
+    if (moveList.head.usedLetter.isDefined){
+      if(word.exist(moveList.head.usedLetter.get)){
+        moveList.head.setResult(true)
+        println("you found one!!")
+      }
+      else{
+        val pointDecrease: Int = (letterCosts(moveList.head.usedLetter.get) * (1 - discount)).toInt
+        points = points - pointDecrease
+        moveList.head.setResult(false)
+        println("secret word does not include that letter")
+      }
     }
   }
 
 
   def applyMove(): Unit = {
-    val currentCard = moveList.head.usedCard
-    currentCard.play()
-    points = points - currentCard.cost
+    if (moveList.head.usedCard.isDefined){
+      val currentCard = moveList.head.usedCard
+      currentCard.get.play()
+      points = points - currentCard.get.cost
 
-    if(currentCard.revealsCategory){
-      word.revealCategory()
-    }
-    if (currentCard.opensLetter){
-      word.openLetter(moveList.head.index)
-    }
-    if (currentCard.makesGuess){
-      if (currentCard.guessDiscount != 0){
-        guess(currentCard.guessDiscount)
+      if(currentCard.get.revealsCategory){
+        word.revealCategory()
       }
-      else{
-        if(moveList.length > 1)
-          guess(moveList(1).calculateDiscountForNextMove())
-        else
-          guess(0)
+      if (currentCard.get.opensLetter){
+        word.openLetter(moveList.head.index.get)
       }
+      if (currentCard.get.makesGuess){
+        if (currentCard.get.guessDiscount != 0){
+          guess(currentCard.get.guessDiscount)
+        }
+        else{
+          if(moveList.length > 1)
+            guess(moveList(1).calculateDiscountForNextMove())
+          else
+            guess(0)
+        }
+      }
+    }
+    else{
+      if(moveList.length > 1)
+        guess(moveList(1).calculateDiscountForNextMove())
+      else
+        guess(0)
     }
   }
 
