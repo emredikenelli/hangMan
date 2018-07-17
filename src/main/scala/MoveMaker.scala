@@ -31,13 +31,12 @@ class MoveMaker (game: Game){
       else{
         val nextMove = new Move(letter, None, index)
         if (playible(None, letter, index)){
-          println("girdi")
           game.playMove(nextMove)
         }
       }
     }
     catch{
-      case ex: NoSuchElementException => //do nothing for now
+      case ex: NoSuchElementException => println("no such card")
       case ex: IllegalArgumentException => println("cant make that move")
     }
 
@@ -45,8 +44,8 @@ class MoveMaker (game: Game){
 
     def playible(card: Option[Card], letter: Option[Char], index: Option[Int]): Boolean = {
       val letterCheck = if (letter.isDefined) {game.checkLetter(letter.get)} else true
-      val cardCheck = if (card.isDefined) game.checkCard(card.get) else true
-      val indexCheck = if (index.isDefined) game.checkIndex(index.get) else true
+      val cardCheck = if (card.isDefined) {game.checkCard(card.get)} else true
+      val indexCheck = if (index.isDefined) {game.checkIndex(index.get)} else true
 
       letterCheck && cardCheck && indexCheck
     }

@@ -1,9 +1,13 @@
+
+
 class Word {
   val word = "eagle"
   val wordStatus = new Array[Boolean](word.length)
   val category = "animal"
   exist(' ')
   exist('-')
+
+
 
 
 

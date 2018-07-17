@@ -33,9 +33,6 @@ class Game (difficulty: String){
 
 
   def checkLetter(letter: Char): Boolean = {
-    if (letter == '*'){
-      return true
-    }
 
     if (!('a' <= letter && letter <= 'z')){
       println("unknown letter has entered")
@@ -43,9 +40,11 @@ class Game (difficulty: String){
     }
 
     for (move <- moveList){
-      if (letter.equals(move.usedLetter.get)){
-        println("letter is already used")
-        return false
+      if (move.usedLetter.isDefined){
+        if (letter.equals(move.usedLetter.get)){
+          println("letter is already used")
+          return false
+        }
       }
     }
     return true
@@ -128,7 +127,6 @@ class Game (difficulty: String){
     if (moveList.head.usedCard.isDefined){
       val currentCard = moveList.head.usedCard.get
       currentCard.play()
-      println("oynadi")
       points = points - currentCard.cost
 
       if(currentCard.revealsCategory){
